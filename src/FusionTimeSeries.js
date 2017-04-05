@@ -2,13 +2,6 @@ import React, {
   Component
 }
 from 'react';
-//
-// require('./lib/fusioncharts');
-// require('./lib/fusioncharts.timeseries.js');
-// require('./lib/data-aggregator-es5.js');
-// require('./lib/growth-analyser-es5.js');
-// require('./lib/date-range-chooser-es5.js');
-// require('./lib/standard-period-selector-es5.js');
 
 import cloneDeep from 'lodash/cloneDeep';
 
@@ -16,47 +9,58 @@ import cloneDeep from 'lodash/cloneDeep';
 class FusionTimeSeries extends Component {
   constructor(props) {
     super(props);
-
-    this.dataSource = {};
-
-    this.dataSource.chart = cloneDeep(props.chart);
-    this.dataSource.extensions = cloneDeep(props.extensions);
-
+    this.chartConfig = {}
     this.chart = null;
+  }
 
-    this.chartConfig = {
-      type: "timeseries",
-			plottype: "line",
-	    renderAt: null ,
-			width: this.props.width,
-			height: this.props.height,
-			dataFormat: "json",
-			containerBackgroundOpacity: 0,
-      dataSource: cloneDeep(this.dataSource)
-    }
+  _setChartConfig(renderAt, attrs) {
+    this.chartConfig =  {
+        type: "timeseries",
+  			plottype: "line",
+  	    renderAt: renderAt ,
+  			width: attrs.width,
+  			height: attrs.height,
+  			dataFormat: "json",
+  			containerBackgroundOpacity: 0,
+        dataSource: {
+          chart: cloneDeep(attrs.chart),
+          extensions: cloneDeep(attrs.extensions)
+        }
+      };
+  }
+
+  _renderTsChart(){
+    this.chart = new FusionCharts(this.chartConfig);
+    this.chart.render();
   }
 
   componentDidMount() {
-    this.chartConfig.renderAt = this.refs.fcTimeChart;
-    console.log(this);
-    this.chart = new FusionCharts(this.chartConfig);
-    this.chart.render();
+    this._setChartConfig(this.refs.fcTimeChart, this.props);
+    if (!this.chart) {
+      this._renderTsChart();
+    }
   }
 
   componentWillUnmount() {
     this.chart && this.chart.dispose();
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps !== this.props) {
+      this._setChartConfig(this.refs.fcTimeChart, nextProps);
+      this._renderTsChart();
+    }
+  }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps !== this.props) {
+      this._setChartConfig(this.refs.fcTimeChart, this.props);
+      this._renderTsChart();
+    }
   }
 
   render() {
-
-    return (< div
-        ref="fcTimeChart"
-      />
-    );
+    return (< div ref="fcTimeChart"/>);
   }
 }
 
