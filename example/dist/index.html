@@ -46,7 +46,7 @@
 				<li id='home-navigate' role="presentation" class="navigation-tab active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
 				<li id='getting-started-navigate' role="presentation" class="navigation-tab"><a href="#getting-started" aria-controls="getting-started" role="tab" data-toggle="tab">Getting Started</a></li>
 				<li id='dashboard-navigate' role="presentation" class="navigation-tab"><a href="#dashboard" aria-controls="dashboard" role="tab" data-toggle="tab">Dashboard</a></li>
-				<li id='demos-navigate' role="presentation" class="navigation-tab"><a href="#demos" aria-controls="demos" role="tab" data-toggle="tab">Demos</a></li>
+				<li id='demos-navigate' role="presentation" class="navigation-tab"><a href="#demos-pane" aria-controls="demos-pane" role="tab" data-toggle="tab">Demos</a></li>
 			</ul>
 		</div>
 	</div>
@@ -187,7 +187,33 @@ ReactDOM.render( &lt; FusionTimeSeries width = "850" height = "450" { ...fcDataS
 					</div>
 				</div>
 			</div>
-			<div role="tabpanel" class="container tab-pane" id="demos"></div>
+			<div role="tabpanel" class="container tab-pane" id="demos-pane">
+				<div id="demos"></div>
+				<div class="row">
+					<div class="col-md-9 col-md-offset-3" id="code-listing" style="position: relative; top: -450px;">
+            <ul class="nav nav-tabs">
+              <li class="active">
+                <a href="#javascript_code" data-toggle="tab">Javascript</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div id="javascript_code" className="tab-pane fade in active">
+<pre>
+<code class="language-javascript">
+import React from 'react';
+import ReactDOM from 'react-dom';
+import FusionTimeSeries from 'FusionTimeSeries';
+var fcDataSource = &#123;
+ // config goes here
+&#125;
+ReactDOM.render( &lt; FusionTimeSeries width = "850" height = "450" &#123; ...fcDataSource &#125; /&gt;, document.getElementById('chart-container'));
+</code>
+              </pre>
+              </div>
+            </div>
+          </div>
+				</div>
+			</div>
 			<div role="tabpanel" class="container-fluid tab-pane" id="dashboard">
 				 <h3>Global Terrorism Dashboard</h3>
                     <div class="container-fluid cst-container">

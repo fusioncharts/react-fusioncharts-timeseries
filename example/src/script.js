@@ -9,22 +9,6 @@ window.jQuery = $;
 window.bootstrap = require('bootstrap');
 window.ReactDOM = ReactDOM;
 
-const Snippet = () => {
-  return (
-    <pre>
-    <code className="language-javascript">
-    import React from 'react';
-    import ReactDOM from 'react-dom';
-    import FusionTimeSeries from 'FusionTimeSeries';
-    var fcDataSource = &#123;
-     // config goes here
-    &#125;
-    ReactDOM.render( &lt; FusionTimeSeries width = "850" height = "450" &#123; ...fcDataSource &#125; /&gt;, document.getElementById('chart-container'));
-    </code>
-    </pre>
-  );
-}
-
 class ListComponent extends React.Component {
   constructor(props){
     super(props);
@@ -34,12 +18,17 @@ class ListComponent extends React.Component {
       fcDataSource: {}
     }
   }
-  clickHandle(item) {
 
+  clickHandle(item) {
     this.setState({
       fcDataSource: this.tsData[item].data
     })
   }
+
+  componentDidMount() {
+    Prism.highlightAll();
+  }
+
   componentWillMount() {
     this.setState({
       fcDataSource: this.tsData[this.charts[0]].data
@@ -69,20 +58,8 @@ class ListComponent extends React.Component {
             <div className="chartts">
               <FusionTimeSeries width="850" height="450" { ...this.state.fcDataSource }/>
             </div>
-          <div id="code-listing">
-          <ul className="nav nav-tabs">
-            <li className="active">
-              <a href="#javascript_code" data-toggle="tab">Javascript</a>
-            </li>
-          </ul>
-          <div className="tab-content">
-            <div id="javascript_code" className="tab-pane fade in active">
-            <Snippet />
           </div>
-       </div>
-      </div>
-    </div>
- </div>
+        </div>
     );
   }
 }
