@@ -8,7 +8,7 @@ The **react-fusiontime-xt** plugin, along with FusionCharts Suite XT, lets you a
 
 This article outlines the steps to be executed for rendering charts using the **react-fusiontime-xt** plugin.
 
-#### Step 1: Install **fusioncharts**, **react**, **react-dom**, and **react-fusiontime-xt** npm package
+#### Step 1: Install **fusiontime-xt**, **react**, **react-dom**, and **react-fusiontime-xt** npm package
 Execute the commands below in the terminal to install **fusioncharts**, **react**, **react-dom**, and **react-fusiontime-xt** node modules.
 
 ```sh
@@ -31,37 +31,30 @@ In your HTML, find the section where you wish to render the chart place a `<div>
 
 Import **react**, **react-dom**, **fusioncharts**, and **react-fusiontime-xt** modules, in this order, through npm. In your JavaScript code, define an object that consists of all the configurations and their values, required to render FusionCharts.
 
-```
+```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
-import fusioncharts from 'fusioncharts';
-// Load the charts module
-import charts from 'fusioncharts/fusioncharts.charts';
-import ReactFC from 'react-fusiontime-xt';
 
-// Pass fusioncharts as a dependency of charts
-charts(FusionCharts)
+import FusionTime from 'react-fusiontime-xt';
 
-var chartConfigs = {
-    type: ...,
-    renderAt: ...,
-    className: ..., // ReactJS attribute-name for DOM classes
-    dataFormat: ...,
-    dataSource: ...
-};
+var fcDataSource = {
+ ...
+}
+ReactDOM.render( <FusionTime width = "850" height = "450" { ...fcDataSource } />, document.getElementById('chart-container'));
+
 ```
 
-#### Step 4: Pass the configurations required for FusionCharts and render the chart
-##### FusionCharts plugin for **react** can be used in two ways:
-1. Use the **ReactFC** component directly in **ReactDOM** to render the chart. The configurations are passed as props of the component.
-2. Create multiple **ReactFC** component inside your custom defined component to render individual charts. This way you would be able to hold the state in your custom component and will be able to perform various activities using the component’s lifecycle hooks.
+#### Step 4: Pass the configurations required for FusionTime and render the chart
+##### FusionTime plugin for **react** can be used in two ways:
+1. Use the **FusionTime** component directly in **ReactDOM** to render the chart. The configurations are passed as props of the component.
+2. Create multiple **FusionTime** component inside your custom defined component to render individual charts. This way you would be able to hold the state in your custom component and will be able to perform various activities using the component’s lifecycle hooks.
 
 ##### Method 1:
-Render the chart in the **React** application for a standalone chart, we can choose to make a component class or directly render the chart with the **ReactFC** component class. The object containing the chart configuration properties are passed to the **FusionCharts** component as props, as shown below:
+Render the chart in the **React** application for a standalone chart, we can choose to make a component class or directly render the chart with the **FusionTime** component class. The object containing the chart configuration properties are passed to the **FusionCharts** component as props, as shown below:
 
-```
+```javascript
 ReactDOM.render(
-    <ReactFC {...chartConfigs} />,
+    <FusionTime {...chartConfigs} />,
     document.getElementById('chart-container')
 );
 ```
@@ -69,16 +62,26 @@ ReactDOM.render(
 ##### Method 2:
 Create a custom MyApp component to render the chart as shown below:
 
-```
-var MyApp = React.createClass({
-    ..., // Rest of the React Component Code
-    render: function () {
+```javascript
+class MyApp extends React.Component {
+    // Rest of the React Component Code
+    constructor(props) {
+      super(props);
+      this.state = {
+        fcDataSource1: {},
+        fcDataSource2: {}
+      }
+    }
+
+    render() {
         return (
-            <ReactFC {...categoryChartConfigs} />
-            <ReactFC {...revenueChartConfigs} />
+          <div>
+            <FusionTime width = "850" height = "450" { ...this.state.fcDataSource1 } />
+            <FusionTime width = "450" height = "300" { ...this.state.fcDataSource2 } />
+          </div>
         );
     }
-});
+}
 
 ReactDOM.render(
     <MyApp />,
@@ -86,20 +89,7 @@ ReactDOM.render(
 );
 ```
 
-While it is recommended to create an object, with the configuration properties, and passing the values defined, you can also pass the configuration properties separately as shown below:
-
-```
-ReactDOM.render(
-    <ReactFC
-        type: ...,
-        renderAt: ...,
-        className: ...,
-        dataFormat: ...,
-        dataSource: ... />,
-    document.getElementById('chart-container')
-);
-```
-
+While it is recommended to create an object, with the configuration properties, and passing the values defined.
 Your chart should now render when the page is loaded.
 
 ### Licensing

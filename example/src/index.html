@@ -61,7 +61,7 @@
 						<p>
 							This project allows to build ReactJS UI components for <a href="http://www.fusioncharts.com/time-series/">FusionTime XT JavaScript Charting Library</a>. It makes adding rich, interactive charting to your ReactJS Projects easy and works in the <i>React Way</i>.
 						</p>
-						<p><a class="btn btn-primary btn-lg download-plugin-btn" href="#" role="button"><i class="glyphicon glyphicon-download"></i> Download (1.0)</a></p>
+
 					</div>
 					<div class="col-md-4 gh-pages-home-page-col-md-4">
 						<h3>Features</h3>
@@ -71,8 +71,6 @@
 								<li>Add a chart using just a single component</li>
 								<li>Auto-updates your chart object on modifying the dataSource</li>
 								<li>Option to include interactivity between charts</li>
-								<li>Offers advanced control by giving you access to full FusionCharts object</li>
-								<li>Has variety of ways to add a chart, from JSON URL to Props Array Binding</li>
 							</ul>
 						</p>
 					</div>
@@ -131,12 +129,12 @@ npm install react react-dom fusioncharts-xt react-fusiontime-xt --save
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import FusionTimeSeries from 'FusionTimeSeries';
+import FusionTime from 'react-fusiontime-xt';
 
 var fcDataSource = {
  ...
 }
-ReactDOM.render( &lt; FusionTimeSeries width = "850" height = "450" { ...fcDataSource } /&gt;, document.getElementById('chart-container'));
+ReactDOM.render( &lt; FusionTime width = "850" height = "450" { ...fcDataSource } /&gt;, document.getElementById('chart-container'));
 </code></pre>
 
 							<p>&nbsp;</p>
@@ -144,7 +142,7 @@ ReactDOM.render( &lt; FusionTimeSeries width = "850" height = "450" { ...fcDataS
 							<br>
 
 							<h3>Licensing</h3>
-							<p style="margin-bottom:30px;">React-FusionCharts is open-source and distributed under the terms of the MIT/X11 License. You will still need to download and include FusionCharts in your page. This project provides no direct functionality. You can <a href="http://fusioncharts.com/download/">Download an evaluation</a>.
+							<p style="margin-bottom:30px;"> React-fusiontime-xt is open-source and distributed under the terms of the MIT/X11 License. You will still need to download and include FusionCharts in your page. This project provides no direct functionality. You can <a href="http://fusioncharts.com/download/">Download an evaluation</a>.
 								You will still need to purchase a FusionCharts license to use in a commercial environment (FusionCharts is <a href="http://www.fusioncharts.com/download/free/">free for non-commercial and personal use</a>) .</p>
 						</div>
 
@@ -166,14 +164,30 @@ ReactDOM.render( &lt; FusionTimeSeries width = "850" height = "450" { ...fcDataS
 							<pre class="language-javascript">
 <code class="language-javascript" >
 import React from 'react';
-import ReactDOM from 'react-dom';
+class MyApp extends React.Component {
+    // Rest of the React Component Code
+    constructor(props) {
+      super(props);
+      this.state = {
+        fcDataSource1: {},
+        fcDataSource2: {}
+      }
+    }
 
-import FusionTimeSeries from 'FusionTimeSeries';
-
-var fcDataSource = {
- ...
+    render() {
+        return (
+          &lt;div&gt;
+            &lt;FusionTime width = "850" height = "450" { ...this.state.fcDataSource1 } /&gt;
+            &lt;FusionTime width = "450" height = "300" { ...this.state.fcDataSource2 } /&gt;
+          &lt;/div&gt;
+        );
+    }
 }
-ReactDOM.render( &lt; FusionTimeSeries width = "850" height = "450" { ...fcDataSource } /&gt;, document.getElementById('chart-container'));
+
+ReactDOM.render(
+    <MyApp />,
+    document.getElementById('chart-container')
+);
 </code></pre>
 
 							<p>&nbsp;</p>
@@ -200,13 +214,28 @@ ReactDOM.render( &lt; FusionTimeSeries width = "850" height = "450" { ...fcDataS
               <div id="javascript_code" className="tab-pane fade in active">
 <pre>
 <code class="language-javascript">
-import React from 'react';
-import ReactDOM from 'react-dom';
-import FusionTimeSeries from 'FusionTimeSeries';
-var fcDataSource = &#123;
- // config goes here
-&#125;
-ReactDOM.render( &lt; FusionTimeSeries width = "850" height = "450" &#123; ...fcDataSource &#125; /&gt;, document.getElementById('chart-container'));
+	class MyApp extends React.Component {
+	    // Rest of the React Component Code
+	    constructor(props) {
+	      super(props);
+	      this.state = {
+	        fcDataSource: {}
+	      }
+	    }
+
+	    render() {
+	        return (
+	          &lt;div&gt;
+	            &lt;FusionTime width = "450" height = "300" { ...this.state.fcDataSource } /&gt;
+	          &lt;/div&gt;
+	        );
+	    }
+	}
+
+	ReactDOM.render(
+	    &lt;MyApp /&gt;,
+	    document.getElementById('chart-container')
+	);
 </code>
               </pre>
               </div>

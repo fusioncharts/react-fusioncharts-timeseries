@@ -3,6 +3,8 @@ logs
 *.log
 npm-debug.log*
 
+
+# Temp solution to import fusiontime series lib
 example/src/js/lib
 example/dist/js/lib
 

@@ -1,22 +1,21 @@
 {
-  "name": "react-fusioncharts",
+  "name": "react-fusiontime-xt",
   "version": "1.0.0",
-  "description": "React FusionCharts",
-  "main": "src/FusionTimeSeries.js",
+  "description": "React FusionTime",
+  "main": "src/FusionTime.js",
   "author": "FusionCharts",
   "homepage": "http://www.fusioncharts.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fusioncharts/react-fusioncharts-timeseries.git"
+    "url": "https://github.com/fusioncharts/react-fusiontime-xt.git"
   },
   "bugs": {
-    "url": "https://github.com/fusioncharts/react-fusioncharts-timeseries/issues"
+    "url": "https://github.com/fusioncharts/react-fusiontime-xt/issues"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
     "classnames": "^2.1.2",
     "colors": "^1.1.2",
-    "fusionmaps": "^3.11.3-sr.1",
     "jquery": "^3.1.1",
     "lodash": "^4.17.4",
     "prism": "^1.0.0",

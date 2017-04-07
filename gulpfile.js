@@ -12,7 +12,7 @@ var gulp = require('gulp'),
 
   taskConfig = {
     component: {
-      name: 'FusionTimeSeries',
+      name: 'FusionTime',
       dependencies: [
         'classnames',
         'react',

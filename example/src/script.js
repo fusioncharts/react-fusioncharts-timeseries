@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Prism from 'prismjs';
-import FusionTimeSeries from '../../src/FusionTimeSeries';
+import FusionTime from '../../src/FusionTime.js';
 import tsData from './data/datarepo';
 
 window.jQuery = $;
@@ -19,6 +19,7 @@ class ListComponent extends React.Component {
     }
   }
 
+  // Toggle between different datasource
   clickHandle(item) {
     this.setState({
       fcDataSource: this.tsData[item].data
@@ -29,6 +30,7 @@ class ListComponent extends React.Component {
     Prism.highlightAll();
   }
 
+  // Initially render only the first chart
   componentWillMount() {
     this.setState({
       fcDataSource: this.tsData[this.charts[0]].data
@@ -56,7 +58,7 @@ class ListComponent extends React.Component {
           </div>
         <div className="col-md-9" >
             <div className="chartts">
-              <FusionTimeSeries width="850" height="450" { ...this.state.fcDataSource }/>
+              <FusionTime width="850" height="450" { ...this.state.fcDataSource }/>
             </div>
           </div>
         </div>
