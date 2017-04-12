@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Prism from 'prismjs';
-import FusionTime from '../../src/FusionTime.js';
+import FusionTime from '../../lib/FusionTime';
 import tsData from './data/datarepo';
 
 window.jQuery = $;

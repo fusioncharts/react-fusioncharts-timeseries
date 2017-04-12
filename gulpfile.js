@@ -1,4 +1,4 @@
-var gulp = require('gulp'),
+let gulp = require('gulp'),
   initGulpTasks = require('react-component-gulp-tasks'),
 
   /**
@@ -17,9 +17,9 @@ var gulp = require('gulp'),
         'classnames',
         'react',
         'react-dom',
-        'fusioncharts'
+        'fusioncharts',
       ],
-      lib: 'lib'
+      lib: 'lib',
     },
 
     example: {
@@ -33,15 +33,15 @@ var gulp = require('gulp'),
         './views/*.html',
         // '../fonts/*',
         './css/*.css',
-        '.gitignore'
+        '.gitignore',
       ],
       scripts: [
-        'script.js'
+        'script.js',
       ],
       less: [
-        './css/style.less'
-      ]
-    }
+        './css/style.less',
+      ],
+    },
   };
 
 initGulpTasks(gulp, taskConfig);
