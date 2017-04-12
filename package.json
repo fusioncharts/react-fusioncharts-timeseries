@@ -48,6 +48,7 @@
     "karma-spec-reporter": "0.0.26",
     "karma-webpack": "^1.8.1",
     "mocha": "^3.2.0",
+    "pump": "^1.0.2",
     "react": "^15.4.2",
     "react-addons-test-utils": "15.3.0",
     "react-component-gulp-tasks": "^0.7.6",
@@ -62,7 +63,7 @@
     "fusioncharts": "global:FusionCharts"
   },
   "scripts": {
-    "build": "gulp clean && NODE_ENV=production gulp build",
+    "build:source": "gulp clean && NODE_ENV=production gulp build && node_modules/gulp/bin/gulp.js compress",
     "examples": "gulp dev:server",
     "lint": "eslint ./; true",
     "publish:site": "NODE_ENV=production gulp publish:examples",
