@@ -12,7 +12,7 @@ const taskConfig = {
       'react-dom',
       'fusioncharts',
     ],
-    lib: 'lib',
+    lib: 'dist',
   },
 
   example: {
